@@ -5,6 +5,11 @@
 class SearchBlock {
   constructor( element ) {
     this.element = element
+    this.searchBlock = document.querySelector('.search-block');
+    this.input = document.getElementsByTagName('input');
+    this.replace = document.querySelector('.replace');
+    this.add = document.querySelector('.add');
+    this.registerEvents();
   }
 
   /**
@@ -13,13 +18,9 @@ class SearchBlock {
    * только клик по кнопке "Заменить" перед отрисовкой очищает все отрисованные ранее изображения
    */
   registerEvents(){
-    this.searchBlock = document.querySelector('.search-block');
-    this.input = document.getElementsByTagName('input')
-    this.replace = document.querySelector('.replace')
-    this.add = document.querySelector('.add')
-    searchBlock.addEventListener('click', (event) => {
+    this.searchBlock.addEventListener('click', (event) => {
       if (this.input.value.trim() != undefined) {
-        this.photoList = VK.get(this.input, ?????????) //не понимаю, какой колбек нужно передавать
+        this.photoList = VK.get(this.input.value, App.imageViewer.drawImages)
         if (event.target == this.replace) {
         }
         else if (event.target == this.add) {}
@@ -28,3 +29,4 @@ class SearchBlock {
   }
 
 }
+
