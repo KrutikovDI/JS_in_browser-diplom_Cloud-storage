@@ -5,10 +5,9 @@
 class SearchBlock {
   constructor( element ) {
     this.element = element
-    this.searchBlock = document.querySelector('.search-block');
-    this.input = document.getElementsByTagName('input');
-    this.replace = document.querySelector('.replace');
-    this.add = document.querySelector('.add');
+    this.input = this.element.getElementsByTagName('input');
+    this.replace = this.element.querySelector('.replace');
+    this.add = this.element.querySelector('.add');
     this.registerEvents();
   }
 
@@ -18,15 +17,16 @@ class SearchBlock {
    * только клик по кнопке "Заменить" перед отрисовкой очищает все отрисованные ранее изображения
    */
   registerEvents(){
-    this.searchBlock.addEventListener('click', (event) => {
+    this.replace.addEventListener('click', (event) => {
       if (this.input.value.trim() != undefined) {
-        this.photoList = VK.get(this.input.value, App.imageViewer.drawImages)
-        if (event.target == this.replace) {
-        }
-        else if (event.target == this.add) {}
+        VK.get(this.input.value, App.imageViewer.clear(), App.imageViewer.drawImages())
+      }
+    })
+    this.add.addEventListener('click', (event) => {
+      if (this.input.value.trim() != undefined) {
+        VK.get(this.input.value, App.imageViewer.drawImages())
       }
     })
   }
-
 }
 

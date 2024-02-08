@@ -78,17 +78,16 @@ class ImageViewer {
    * Очищает отрисованные изображения
    */
   clear() {
-      imagePreview.src = 'https://yugcleaning.ru/wp-content/themes/consultix/images/no-image-found-360x250.png';
+      this.imagePreview.src = 'https://yugcleaning.ru/wp-content/themes/consultix/images/no-image-found-360x250.png';
   }
 
   /**
    * Отрисовывает изображения.
   */
   drawImages(images) {
-      let imageList = imageBlock.getElementsByTagName('IMG');
-      const ButtonSelectOll = document.querySelector('.select-all')
-      if (ButtonSelectOll.length > 0) {
-          ButtonSelectOll.classList.remove('disabled');
+      this.ButtonSelectOll = document.querySelector('.select-all')
+      if (this.ButtonSelectOll.length > 0) {
+        this.ButtonSelectOll.classList.remove('disabled');
       }
       else {
           ButtonSelectOll.classList.add('disabled');
@@ -105,16 +104,16 @@ class ImageViewer {
    * Контроллирует кнопки выделения всех изображений и отправки изображений на диск
    */
   checkButtonText(){
-      let imageList = imageBlock.getElementsByTagName('IMG');
+      this.imageList = imageBlock.getElementsByTagName('IMG');
       const ButtonSelectOll = document.querySelector('.select-all')
       const ButtonSend = document.querySelector('.send')
       let count = 0;
       for (let i = 0; i < imageList.length; i++) {
-          if (imageList[i].classList.contains('selected')) {
+          if (this.imageList[i].classList.contains('selected')) {
               count ++;
           }        
       }
-      if (imageList.length == count) {
+      if (this.imageList.length == count) {
           ButtonSelectOll.textContent = "Снять выделение";
       }
       else {
