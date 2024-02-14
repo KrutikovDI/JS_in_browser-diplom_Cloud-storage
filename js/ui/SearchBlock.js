@@ -18,13 +18,18 @@ class SearchBlock {
    */
   registerEvents(){
     this.replace.addEventListener('click', (event) => {
-      if (this.input.value.trim() != undefined) {
-        VK.get(this.input.value, App.imageViewer.clear(), App.imageViewer.drawImages())
+      if (this.input.value.trim() != '') {
+        VK.get(this.input.value, () => {
+          App.imageViewer.clear();
+          App.imageViewer.drawImages(result)
+        })
       }
     })
     this.add.addEventListener('click', (event) => {
-      if (this.input.value.trim() != undefined) {
-        VK.get(this.input.value, App.imageViewer.drawImages())
+      if (this.input.value.trim() != '') {
+        VK.get(this.input.value, () => {
+          App.imageViewer.drawImages(result)
+        })
       }
     })
   }
