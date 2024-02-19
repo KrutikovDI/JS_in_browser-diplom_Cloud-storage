@@ -20,12 +20,12 @@ class ImageViewer {
    * 5. Клик по кнопке "Отправить на диск" открывает всплывающее окно для загрузки файлов
    */
   registerEvents(){
-      imageBlock.addEventListener('dblclick', (event) => {
+    this.imageBlock.addEventListener('dblclick', (event) => {
           if (event.target.tagName == "IMG") {
-              imagePreview.src = event.target.src;
+              this.imagePreview.src = event.target.src;
           }
       })
-      imageBlock.addEventListener('click', (event) => {
+      this.imageBlock.addEventListener('click', (event) => {
           if (event.target.tagName == "IMG") {
               event.target.classList.toggle('selected');
           }

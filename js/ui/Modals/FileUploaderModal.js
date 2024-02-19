@@ -5,10 +5,10 @@
 class FileUploaderModal extends BaseModal {
   constructor( element ) {
       super(element);
-      this.crossModalWindow = document.querySelector('.!!!!!!!cross-modal-window!!!!!!!!'); //д.б. крестик модального окна
-      this.close = document.querySelector('.close');
-      this.sendAllFiles = document.querySelector('.send-all');
-      this.content = document.querySelector('.content');
+      this.crossModalWindow = this.element.querySelector('.header'); //д.б. крестик модального окна
+      this.close = this.element.querySelector('.close');
+      this.sendAllFiles = this.element.querySelector('.send-all');
+      this.content = this.element.querySelector('.content');
   }
 
   /**

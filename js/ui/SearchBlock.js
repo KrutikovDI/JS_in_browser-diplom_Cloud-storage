@@ -5,7 +5,7 @@
 class SearchBlock {
   constructor( element ) {
     this.element = element
-    this.input = this.element.getElementsByTagName('input');
+    this.input = this.element.getElementsByTagName("input");
     this.replace = this.element.querySelector('.replace');
     this.add = this.element.querySelector('.add');
     this.registerEvents();
@@ -18,16 +18,16 @@ class SearchBlock {
    */
   registerEvents(){
     this.replace.addEventListener('click', (event) => {
-      if (this.input.value.trim() != '') {
-        VK.get(this.input.value, () => {
+      if (this.input[0].value.trim() != '') {
+        VK.get(this.input.value, (result) => {
           App.imageViewer.clear();
           App.imageViewer.drawImages(result)
         })
       }
     })
     this.add.addEventListener('click', (event) => {
-      if (this.input.value.trim() != '') {
-        VK.get(this.input.value, () => {
+      if (this.input[0].value.trim() != '') {
+        VK.get(this.input.value, (result) => {
           App.imageViewer.drawImages(result)
         })
       }
