@@ -14,13 +14,11 @@ class VK {
    * Получает изображения
    * */
   static get(id = '', callback){
-    this.lastCallback = callback(photo_list);
+    this.lastCallback = callback;
     let script = document.createElement('script');
-    script.src = `https://api.vk.com/method/users.get?user_ids=${id}&fields=bdate&v=5.199&album_id=profile&callback=${callbackFunc}`;
+    script.id = "createElement"
+    script.src = `https://api.vk.com/method/users.get?user_ids=${id}&fields=bdate&v=5.199&album_id=profile&callback=${(result) => {VK.processData(result)}}`;
     document.getElementsByTagName("head")[0].appendChild(script);
-    function callbackFunc(result) {
-      this.VK.processData(result);
-    }
   }
 
   /**
@@ -28,14 +26,16 @@ class VK {
    * Является обработчиком ответа от сервера.
    */
   static processData(result){
-    let scriptDelete = document.getElementsByTagName("script")[0];
-    scriptDelete.remove();
+    const tagHead = document.getElementsByTagName("head")
+    let createElement = tagHead.getElementById("createElement")
+    createElement.remove();
     try {
       let photo_list = []
       for (let i = 0; i < result.response.items.length; i++) {
-        num = result.response.items[i].sizes.length
+        let num = result.response.items[i].sizes.length
         photo_list.push(result.response.items[i].sizes[num-1].url)
       }
+      this.callback(photo_list)
       this.lastCallback = () => {}
     }
     catch (error) {
